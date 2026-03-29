@@ -57,6 +57,46 @@
       "files": [{ "source": "ui/separator.tsx", "target": "ui/separator.tsx" }],
       "dependencies": [],
       "registryDependencies": ["utils"]
+    },
+    "label": {
+      "name": "label",
+      "type": "ui",
+      "description": "A label component for form fields",
+      "files": [{ "source": "ui/label.tsx", "target": "ui/label.tsx" }],
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"]
+    },
+    "skeleton": {
+      "name": "skeleton",
+      "type": "ui",
+      "description": "A placeholder loading skeleton with pulse animation",
+      "files": [{ "source": "ui/skeleton.tsx", "target": "ui/skeleton.tsx" }],
+      "dependencies": [],
+      "registryDependencies": ["utils"]
+    },
+    "spinner": {
+      "name": "spinner",
+      "type": "ui",
+      "description": "Spinner and loading dots indicators with motion",
+      "files": [{ "source": "ui/spinner.tsx", "target": "ui/spinner.tsx" }],
+      "dependencies": ["motion", "class-variance-authority"],
+      "registryDependencies": ["utils"]
+    },
+    "avatar": {
+      "name": "avatar",
+      "type": "ui",
+      "description": "An avatar component with image and fallback support",
+      "files": [{ "source": "ui/avatar.tsx", "target": "ui/avatar.tsx" }],
+      "dependencies": [],
+      "registryDependencies": ["utils"]
+    },
+    "aspect-ratio": {
+      "name": "aspect-ratio",
+      "type": "ui",
+      "description": "A component for maintaining consistent aspect ratios",
+      "files": [{ "source": "ui/aspect-ratio.tsx", "target": "ui/aspect-ratio.tsx" }],
+      "dependencies": [],
+      "registryDependencies": ["utils"]
     }
   }
 }
