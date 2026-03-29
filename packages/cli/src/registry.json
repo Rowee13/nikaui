@@ -1,0 +1,62 @@
+{
+  "libs": {
+    "utils": {
+      "name": "utils",
+      "type": "lib",
+      "description": "Utility function for merging Tailwind CSS classes",
+      "files": [{ "source": "lib/utils.ts", "target": "lib/utils.ts" }],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "registryDependencies": []
+    },
+    "motion": {
+      "name": "motion",
+      "type": "lib",
+      "description": "Animation presets and spring configurations",
+      "files": [{ "source": "lib/motion.ts", "target": "lib/motion.ts" }],
+      "dependencies": [],
+      "registryDependencies": []
+    }
+  },
+  "components": {
+    "button": {
+      "name": "button",
+      "type": "ui",
+      "description": "An animated button component with multiple variants",
+      "files": [{ "source": "ui/button.tsx", "target": "ui/button.tsx" }],
+      "dependencies": ["motion", "class-variance-authority"],
+      "registryDependencies": ["utils"]
+    },
+    "badge": {
+      "name": "badge",
+      "type": "ui",
+      "description": "A badge component for labels and statuses",
+      "files": [{ "source": "ui/badge.tsx", "target": "ui/badge.tsx" }],
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils"]
+    },
+    "card": {
+      "name": "card",
+      "type": "ui",
+      "description": "A card container with header, content, and footer sections",
+      "files": [{ "source": "ui/card.tsx", "target": "ui/card.tsx" }],
+      "dependencies": ["motion"],
+      "registryDependencies": ["utils"]
+    },
+    "input": {
+      "name": "input",
+      "type": "ui",
+      "description": "A styled text input component",
+      "files": [{ "source": "ui/input.tsx", "target": "ui/input.tsx" }],
+      "dependencies": [],
+      "registryDependencies": ["utils"]
+    },
+    "separator": {
+      "name": "separator",
+      "type": "ui",
+      "description": "A visual separator for dividing content",
+      "files": [{ "source": "ui/separator.tsx", "target": "ui/separator.tsx" }],
+      "dependencies": [],
+      "registryDependencies": ["utils"]
+    }
+  }
+}

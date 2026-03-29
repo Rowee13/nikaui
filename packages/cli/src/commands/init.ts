@@ -4,12 +4,35 @@ import ora from "ora";
 import fs from "fs-extra";
 import path from "path";
 import prompts from "prompts";
+import {
+  getMissingDependencies,
+  installDependencies,
+  detectPackageManager,
+} from "../utils/dependencies.js";
 
 export const initCommand = new Command()
   .name("init")
   .description("Initialize Nika UI in your project")
-  .action(async () => {
+  .option("--cwd <path>", "Working directory", process.cwd())
+  .action(async (options) => {
+    const cwd = path.resolve(options.cwd);
+
     console.log(chalk.bold("\n  Welcome to Nika UI\n"));
+
+    // Check if already initialized
+    if (await fs.pathExists(path.join(cwd, "nika.config.ts"))) {
+      const { overwrite } = await prompts({
+        type: "confirm",
+        name: "overwrite",
+        message: "nika.config.ts already exists. Overwrite?",
+        initial: false,
+      });
+
+      if (!overwrite) {
+        console.log(chalk.dim("  Cancelled.\n"));
+        process.exit(0);
+      }
+    }
 
     const response = await prompts([
       {
@@ -32,28 +55,43 @@ export const initCommand = new Command()
       },
     ]);
 
+    // User cancelled (Ctrl+C)
+    if (!response.componentsDir) {
+      console.log(chalk.dim("  Cancelled.\n"));
+      process.exit(0);
+    }
+
     const spinner = ora("Initializing Nika UI...").start();
 
     try {
-      await fs.ensureDir(response.componentsDir);
-      await fs.ensureDir(response.utilsDir);
+      // Create directories
+      await fs.ensureDir(path.join(cwd, response.componentsDir));
+      await fs.ensureDir(path.join(cwd, response.utilsDir));
 
+      // Derive aliases from user paths
+      const uiAlias = `@/${response.componentsDir.replace(/^src\//, "")}`;
+      const utilsAlias = `@/${response.utilsDir.replace(/^src\//, "")}/utils`;
+      const hooksAlias = "@/hooks";
+      const componentsAlias = `@/${response.componentsDir.replace(/^src\//, "").replace(/\/ui$/, "")}`;
+
+      // Write nika.config.ts
       const config = `export default {
   style: "default",
   tailwind: {
     css: "./src/app/globals.css",
   },
   aliases: {
-    components: "@/components",
-    ui: "@/components/ui",
-    utils: "@/lib/utils",
-    hooks: "@/hooks",
+    components: "${componentsAlias}",
+    ui: "${uiAlias}",
+    utils: "${utilsAlias}",
+    hooks: "${hooksAlias}",
   },
   motion: ${response.motion},
 } as const;
 `;
-      await fs.writeFile("nika.config.ts", config);
+      await fs.writeFile(path.join(cwd, "nika.config.ts"), config);
 
+      // Write cn() utility
       const utilsContent = `import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -62,10 +100,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 `;
       await fs.writeFile(
-        path.join(response.utilsDir, "utils.ts"),
+        path.join(cwd, response.utilsDir, "utils.ts"),
         utilsContent
       );
 
+      // Write motion presets if enabled
       if (response.motion) {
         const motionContent = `export const motionPresets = {
   fadeIn: { initial: { opacity: 0 }, animate: { opacity: 1 } },
@@ -80,19 +119,45 @@ export function cn(...inputs: ClassValue[]) {
 } as const;
 `;
         await fs.writeFile(
-          path.join(response.utilsDir, "motion.ts"),
+          path.join(cwd, response.utilsDir, "motion.ts"),
           motionContent
         );
       }
 
+      // Install base dependencies
+      const baseDeps = ["clsx", "tailwind-merge"];
+      if (response.motion) {
+        baseDeps.push("motion");
+      }
+
+      const missingDeps = await getMissingDependencies(cwd, baseDeps);
+      if (missingDeps.length > 0) {
+        const pm = detectPackageManager(cwd);
+        spinner.text = `Installing dependencies via ${pm}...`;
+        installDependencies(cwd, missingDeps);
+      }
+
       spinner.succeed(chalk.green("Nika UI initialized successfully!"));
+
+      console.log(chalk.dim("\n  Created:"));
+      console.log(chalk.dim(`    - nika.config.ts`));
+      console.log(chalk.dim(`    - ${response.utilsDir}/utils.ts`));
+      if (response.motion) {
+        console.log(chalk.dim(`    - ${response.utilsDir}/motion.ts`));
+      }
+      if (missingDeps.length > 0) {
+        console.log(chalk.dim(`    - Installed: ${missingDeps.join(", ")}`));
+      }
+
       console.log(
-        chalk.dim("\n  You can now add components with:"),
+        chalk.dim("\n  Add components with:"),
         chalk.cyan("npx nika add button\n")
       );
     } catch (error) {
       spinner.fail(chalk.red("Failed to initialize Nika UI"));
-      console.error(error);
+      if (error instanceof Error) {
+        console.error(chalk.dim(`  ${error.message}`));
+      }
       process.exit(1);
     }
   });
