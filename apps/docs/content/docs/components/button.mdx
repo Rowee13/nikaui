@@ -1,0 +1,60 @@
+---
+title: Button
+description: An animated button component with multiple variants and sizes.
+---
+
+## Installation
+
+```bash
+npx nika add button
+```
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export default function Example() {
+  return <Button>Click me</Button>
+}
+```
+
+## Variants
+
+The button component supports 6 variants:
+
+```tsx
+<Button variant="default">Default</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="destructive">Destructive</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>
+```
+
+## Sizes
+
+```tsx
+<Button size="sm">Small</Button>
+<Button size="default">Default</Button>
+<Button size="lg">Large</Button>
+<Button size="icon">
+  <PlusIcon />
+</Button>
+```
+
+## Animation
+
+The button has spring hover and tap animations by default. Disable with:
+
+```tsx
+<Button animated={false}>No animation</Button>
+```
+
+## API Reference
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost" \| "link"` | `"default"` | Visual style variant |
+| `size` | `"default" \| "sm" \| "lg" \| "icon"` | `"default"` | Button size |
+| `animated` | `boolean` | `true` | Enable/disable motion animation |

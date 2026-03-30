@@ -1,0 +1,67 @@
+---
+title: Theming
+description: Customize colors, radius, and dark mode with CSS variables.
+---
+
+## How Theming Works
+
+Nika UI uses **CSS custom properties** (variables) for theming. Colors are defined as HSL values and mapped to Tailwind utility classes via `@theme inline`.
+
+## Default Theme
+
+The default theme uses a warm sun gold primary color:
+
+```css
+:root {
+  --primary: 42 100% 50%;         /* Sun gold */
+  --primary-foreground: 0 0% 100%; /* White text on gold */
+  --background: 0 0% 100%;        /* White background */
+  --foreground: 222 47% 11%;      /* Dark navy text */
+}
+```
+
+## Dark Mode
+
+Add the `dark` class to your `<html>` element to enable dark mode:
+
+```css
+.dark {
+  --background: 222 47% 6%;
+  --foreground: 210 40% 98%;
+  --primary: 42 100% 50%;
+  --primary-foreground: 222 47% 6%;
+}
+```
+
+## Customizing Colors
+
+To change the theme, update the CSS variables in your `globals.css`:
+
+```css
+@layer base {
+  :root {
+    /* Change primary to blue */
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+  }
+}
+```
+
+## Available Tokens
+
+| Token | Description |
+| --- | --- |
+| `--background` | Page background |
+| `--foreground` | Default text color |
+| `--card` | Card background |
+| `--primary` | Primary brand color |
+| `--secondary` | Secondary color |
+| `--muted` | Muted backgrounds |
+| `--accent` | Accent/hover backgrounds |
+| `--destructive` | Error/danger color |
+| `--border` | Border color |
+| `--input` | Input border color |
+| `--ring` | Focus ring color |
+| `--radius` | Base border radius |
+
+Each token has a corresponding `-foreground` variant for text color on that background.

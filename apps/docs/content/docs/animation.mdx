@@ -1,0 +1,65 @@
+---
+title: Animation
+description: Motion presets and animation customization.
+---
+
+## Motion Integration
+
+Nika UI uses [Motion](https://motion.dev) (formerly Framer Motion) for animations. Every interactive component has smooth spring-based animations enabled by default.
+
+## Disabling Animation
+
+All animated components accept an `animated` prop:
+
+```tsx
+<Button animated={false}>No animation</Button>
+```
+
+## Motion Presets
+
+When you run `npx nika init`, a `motion.ts` file is created with reusable presets:
+
+```ts
+import { motionPresets } from "@/lib/motion";
+
+// Use in your own components
+<motion.div {...motionPresets.fadeIn}>
+  Content fades in
+</motion.div>
+
+<motion.div {...motionPresets.slideUp}>
+  Content slides up
+</motion.div>
+```
+
+### Available Presets
+
+| Preset | Effect |
+| --- | --- |
+| `fadeIn` | Fade from 0 to 1 opacity |
+| `slideUp` | Slide up 20px with fade |
+| `slideDown` | Slide down 20px with fade |
+| `scaleIn` | Scale from 0.95 with fade |
+| `tap` | Scale to 0.98 on press |
+| `hover` | Scale to 1.02 on hover |
+
+### Spring Configs
+
+| Config | Feel |
+| --- | --- |
+| `spring` | Balanced (stiffness: 400, damping: 17) |
+| `springBouncy` | Bouncy (stiffness: 600, damping: 15) |
+| `springSmooth` | Smooth (stiffness: 300, damping: 30) |
+
+## Custom Animations
+
+Since you own the component code, you can modify animations directly:
+
+```tsx
+// In your button.tsx
+<motion.button
+  whileHover={{ scale: 1.05, rotate: 2 }}
+  whileTap={{ scale: 0.95 }}
+  transition={{ type: "spring", stiffness: 500, damping: 20 }}
+>
+```

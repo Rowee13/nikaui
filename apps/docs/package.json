@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3001",
+    "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
@@ -12,6 +12,10 @@
   },
   "dependencies": {
     "@nikaui/registry": "workspace:*",
+    "@types/mdx": "^2.0.13",
+    "fumadocs-core": "^16.7.7",
+    "fumadocs-mdx": "^14.2.11",
+    "fumadocs-ui": "^16.7.7",
     "next": "16.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
