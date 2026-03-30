@@ -97,6 +97,102 @@
       "files": [{ "source": "ui/aspect-ratio.tsx", "target": "ui/aspect-ratio.tsx" }],
       "dependencies": [],
       "registryDependencies": ["utils"]
+    },
+    "dialog": {
+      "name": "dialog",
+      "type": "ui",
+      "description": "A modal dialog with animated overlay and panel",
+      "files": [{ "source": "ui/dialog.tsx", "target": "ui/dialog.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    "dropdown-menu": {
+      "name": "dropdown-menu",
+      "type": "ui",
+      "description": "A dropdown menu with items, labels, and separators",
+      "files": [{ "source": "ui/dropdown-menu.tsx", "target": "ui/dropdown-menu.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    "popover": {
+      "name": "popover",
+      "type": "ui",
+      "description": "A floating popover panel anchored to a trigger",
+      "files": [{ "source": "ui/popover.tsx", "target": "ui/popover.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    "tabs": {
+      "name": "tabs",
+      "type": "ui",
+      "description": "Tabbed interface with animated content transitions",
+      "files": [{ "source": "ui/tabs.tsx", "target": "ui/tabs.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    "switch": {
+      "name": "switch",
+      "type": "ui",
+      "description": "A toggle switch with spring-animated thumb",
+      "files": [{ "source": "ui/switch.tsx", "target": "ui/switch.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    "select": {
+      "name": "select",
+      "type": "ui",
+      "description": "A select dropdown with animated options and checkmarks",
+      "files": [{ "source": "ui/select.tsx", "target": "ui/select.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    "combobox": {
+      "name": "combobox",
+      "type": "ui",
+      "description": "An autocomplete combobox with search filtering",
+      "files": [{ "source": "ui/combobox.tsx", "target": "ui/combobox.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    "accordion": {
+      "name": "accordion",
+      "type": "ui",
+      "description": "Collapsible accordion panels with animated open/close",
+      "files": [{ "source": "ui/accordion.tsx", "target": "ui/accordion.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils"]
+    },
+    "tooltip": {
+      "name": "tooltip",
+      "type": "ui",
+      "description": "A hover/focus tooltip with directional positioning",
+      "files": [{ "source": "ui/tooltip.tsx", "target": "ui/tooltip.tsx" }],
+      "dependencies": ["motion"],
+      "registryDependencies": ["utils"]
+    },
+    "toast": {
+      "name": "toast",
+      "type": "ui",
+      "description": "Toast notifications with provider, variants, and auto-dismiss",
+      "files": [{ "source": "ui/toast.tsx", "target": "ui/toast.tsx" }],
+      "dependencies": ["motion", "class-variance-authority"],
+      "registryDependencies": ["utils"]
+    },
+    "alert-dialog": {
+      "name": "alert-dialog",
+      "type": "ui",
+      "description": "A confirmation dialog with action and cancel buttons",
+      "files": [{ "source": "ui/alert-dialog.tsx", "target": "ui/alert-dialog.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils", "button"]
+    },
+    "checkbox": {
+      "name": "checkbox",
+      "type": "ui",
+      "description": "A checkbox with animated checkmark",
+      "files": [{ "source": "ui/checkbox.tsx", "target": "ui/checkbox.tsx" }],
+      "dependencies": ["@headlessui/react", "motion"],
+      "registryDependencies": ["utils"]
     }
   }
 }

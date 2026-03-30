@@ -27,5 +27,12 @@ export function transformImports(
     `from "${motionAlias}"`
   );
 
+  // Replace relative component imports → user's ui alias
+  // e.g. "./button" → "@/components/ui/button"
+  result = result.replace(
+    /from\s+["']\.\/([a-z-]+)["']/g,
+    `from "${config.aliases.ui}/$1"`
+  );
+
   return result;
 }
