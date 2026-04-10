@@ -2,6 +2,7 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
+import { Header } from "@/components/header";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -29,7 +30,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <RootProvider>{children}</RootProvider>
+        <RootProvider>
+          <Header />
+          {children}
+        </RootProvider>
       </body>
     </html>
   );

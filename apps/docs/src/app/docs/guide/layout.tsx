@@ -8,7 +8,7 @@ export default function GuideLayout({ children }: { children: ReactNode }) {
   const tree = getSubTree(source.getPageTree(), "guide");
 
   return (
-    <DocsLayout tree={tree} {...baseOptions()} nav={{ enabled: false }}>
+    <DocsLayout tree={tree} {...baseOptions()}>
       {children}
     </DocsLayout>
   );

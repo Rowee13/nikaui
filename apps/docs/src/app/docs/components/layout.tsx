@@ -8,7 +8,7 @@ export default function ComponentsLayout({ children }: { children: ReactNode }) 
   const tree = getSubTree(source.getPageTree(), "components");
 
   return (
-    <DocsLayout tree={tree} {...baseOptions()} nav={{ enabled: false }}>
+    <DocsLayout tree={tree} {...baseOptions()}>
       {children}
     </DocsLayout>
   );
