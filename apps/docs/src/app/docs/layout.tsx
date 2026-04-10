@@ -1,12 +1,11 @@
-import { source } from "@/lib/source";
-import { DocsLayout } from "fumadocs-ui/layouts/docs";
-import { baseOptions } from "@/lib/layout.shared";
+import { DocsTabNav } from "@/components/docs-tab-nav";
 import type { ReactNode } from "react";
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function DocsRootLayout({ children }: { children: ReactNode }) {
   return (
-    <DocsLayout tree={source.getPageTree()} {...baseOptions()}>
+    <div className="flex min-h-screen flex-col">
+      <DocsTabNav />
       {children}
-    </DocsLayout>
+    </div>
   );
 }

@@ -1,7 +1,5 @@
 {
   "title": "Guide",
-  "description": "Learn how to use Nika UI",
-  "root": true,
   "pages": [
     "index",
     "installation",
