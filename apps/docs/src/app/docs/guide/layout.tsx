@@ -8,7 +8,11 @@ export default function GuideLayout({ children }: { children: ReactNode }) {
   const tree = getSubTree(source.getPageTree(), "guide");
 
   return (
-    <DocsLayout tree={tree} {...baseOptions()}>
+    <DocsLayout
+      tree={tree}
+      {...baseOptions()}
+      containerProps={{ className: "[--fd-layout-width:1400px]" }}
+    >
       {children}
     </DocsLayout>
   );

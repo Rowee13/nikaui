@@ -8,7 +8,11 @@ export default function ComponentsLayout({ children }: { children: ReactNode }) 
   const tree = getSubTree(source.getPageTree(), "components");
 
   return (
-    <DocsLayout tree={tree} {...baseOptions()}>
+    <DocsLayout
+      tree={tree}
+      {...baseOptions()}
+      containerProps={{ className: "[--fd-layout-width:1400px]" }}
+    >
       {children}
     </DocsLayout>
   );
