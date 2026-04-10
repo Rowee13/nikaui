@@ -1,6 +1,10 @@
 {
   "title": "Components",
+  "description": "Browse all components",
+  "root": true,
   "pages": [
+    "index",
+    "---Foundation---",
     "button",
     "badge",
     "card",
